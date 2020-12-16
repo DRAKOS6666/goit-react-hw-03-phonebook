@@ -1,0 +1,12 @@
+.contactList {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: capitalize;
+  line-height: 20px;
+}
+
+.contactListItem {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #000;
+}
