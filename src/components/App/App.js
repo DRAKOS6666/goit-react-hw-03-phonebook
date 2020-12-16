@@ -15,7 +15,9 @@ export default class App extends Component {
   componentDidMount() {
     try {
       this.setState({
-        contacts: JSON.parse(window.localStorage.getItem('contacts')),
+        contacts: localStorage.getItem('contacts')
+          ? JSON.parse(window.localStorage.getItem('contacts'))
+          : [],
       });
     } catch (error) {
       console.log(error);
