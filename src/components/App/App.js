@@ -13,15 +13,19 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    try {
-      this.setState({
-        contacts: localStorage.getItem('contacts')
-          ? JSON.parse(window.localStorage.getItem('contacts'))
-          : [],
-      });
-    } catch (error) {
-      console.log(error);
+    if (localStorage.getItem('contacts')) {
+      try {
+        this.setState({
+          contacts: JSON.parse(window.localStorage.getItem('contacts')),
+        });
+        return;
+      } catch (error) {
+        console.log('LocalStoage parse Error');
+      }
     }
+    this.setState({
+      contacts: [],
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -81,18 +85,18 @@ export default class App extends Component {
 
         <h2>Contacts ({contacts.length})</h2>
         {contacts.length > 0 ? (
-          <Filter
-            onFindItem={this.findContact}
-            numberOfContacts={numberOfContacts}
-          />
+          <>
+            <Filter
+              onFindItem={this.findContact}
+              numberOfContacts={numberOfContacts}
+            />
+            <ContactList
+              contacts={filteredContacts}
+              deleteContact={this.deleteContact}
+            />
+          </>
         ) : (
           <h3>Please add contacts...</h3>
-        )}
-        {contacts.length > 0 && (
-          <ContactList
-            contacts={filteredContacts}
-            deleteContact={this.deleteContact}
-          />
         )}
       </div>
     );
