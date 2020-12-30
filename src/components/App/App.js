@@ -13,19 +13,20 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    if (localStorage.getItem('contacts')) {
+    const contactsInLocalStorage = localStorage.getItem('contacts');
+    if (contactsInLocalStorage) {
       try {
         this.setState({
-          contacts: JSON.parse(window.localStorage.getItem('contacts')),
+          contacts: JSON.parse(contactsInLocalStorage),
         });
         return;
       } catch (error) {
         console.log('LocalStoage parse Error');
       }
     }
-    this.setState({
-      contacts: [],
-    });
+    // this.setState({
+    //   contacts: [],
+    // });
   }
 
   componentDidUpdate(prevProps, prevState) {
