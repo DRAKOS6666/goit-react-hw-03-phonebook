@@ -24,9 +24,6 @@ export default class App extends Component {
         console.log('LocalStoage parse Error');
       }
     }
-    // this.setState({
-    //   contacts: [],
-    // });
   }
 
   componentDidUpdate(prevProps, prevState) {
